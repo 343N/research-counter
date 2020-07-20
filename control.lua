@@ -33,7 +33,7 @@ function checkButtonExistence(p)
                 style = 'mod_gui_button',
                 sprite = 'item/automation-science-pack',
                 -- caption = "Open Research Counter",
-                tooltip = "Open Research Counter"
+                tooltip = { 'research-counter.modguibutton-tooltip' }
             })
             -- first time using goto OMEGALUL
             ::CONTINUE::
@@ -54,7 +54,7 @@ function buildGUI(ply)
 
     local frame = base.add({
         name = 'research-counter-base',
-        caption = "Research Counter",
+        caption = { 'research-counter.gui-frame-title' },
         style = "inner_frame_in_outer_frame",
         direction = "vertical",
         -- tooltip = "Research Counter",
@@ -105,13 +105,14 @@ function buildGUI(ply)
     local individualTab = tabbedPane.add({
         name = "individual-tab",
         type = 'tab',
-        caption = "Individual",
+        caption = {"research-counter.individual-tab-title"},
         -- horizontally_stretchable = true,
     })
     local groupedTab = tabbedPane.add({
         name = "grouped-tab",
         type = 'tab',
-        caption = "Grouped",
+        -- caption = "Grouped",
+        caption = {"research-counter.grouped-tab-title"},
         -- horizontally_stretchable = true,
     })
 
@@ -273,9 +274,8 @@ function buildGUI(ply)
             style = 'slot_button',
             sprite = 'item/' .. k,
             tooltip = { 
-                "",
-                game.item_prototypes[k].localised_name,
-                '\n' .. formatNumberString(v) .. ' remaining'
+                "research-counter.individual-entry-tooltip",
+                game.item_prototypes[k].localised_name, formatNumberString(v) 
             },
         })
     end
@@ -314,10 +314,7 @@ function buildGUI(ply)
                 name = v2,
                 type = 'sprite',
                 sprite = 'item/' .. v2,
-                tooltip = { 
-                    "",
-                    game.item_prototypes[v2].localised_name
-                },
+                tooltip = game.item_prototypes[v2].localised_name,
                 -- style = 'transparent_slot'
             })
             if (count ~= 0) then
@@ -338,7 +335,7 @@ function buildGUI(ply)
         labelFlow.add({
             name = 'label',
             type = 'label',
-            caption = formatNumberString(v) .. ' remaining'
+            caption = {'research-counter.grouped-entry-label', formatNumberString(v)}
         })
         labelFlow.style.horizontal_align = "left"
         labelFlow.style.vertical_align = "center"
@@ -371,7 +368,7 @@ function buildGUI(ply)
 
     local closeButton = frame.add({
         name = "research-counter-close-button",
-        caption = "Close",
+        caption = {"research-counter.gui-close-button"},
         type  = "button"
     })
 
