@@ -397,7 +397,7 @@ function toggleGUI(ply)
 end
 
 function shouldCountTech(tech)
-    return (not tech.researched) and tech.enabled and (not tech.research_unit_count_formula)
+    return (not tech.researched) and tech.enabled and (not tech.research_unit_count_formula) and (not tech.prototype.hidden)
 end
 
 script.on_event(defines.events.on_console_chat, function()
