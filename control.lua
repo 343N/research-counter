@@ -1,4 +1,4 @@
-require('mod-gui')
+local mod_gui = require('mod-gui')
 
 -- local researchIngredients = {}
 -- local researchList = {}
@@ -21,6 +21,7 @@ function checkButtonExistence(p)
         -- create stuffs heres
     else
         
+        print(mod_gui)
         for k, v in pairs(game.players) do
             local flow = mod_gui.get_button_flow(v)
             if (flow['research-counter-button']) then
@@ -88,7 +89,7 @@ function buildGUI(ply)
     local tabbedPane = tabbedPaneFrame.add({
         name = 'tabbedPane',
         type = "tabbed-pane",
-        style = 'filter_tabbed_pane'
+        style = 'researchcounter_tabbed_pane'
     })
 
     -- local tabbedPaneHeightCompensation = 52
@@ -97,7 +98,7 @@ function buildGUI(ply)
     -- tabbedPane.style.height = 250
     table.print(tabbedPane.children_names)
     -- print(tabbedPane.children_names)
-    -- tabbedPane.style.left_padding = 8
+    tabbedPane.style.left_padding = 0
     -- tabbedPane.style.right_padding = 8
     -- tabbedPane.style.top_padding = 8
     -- tabbedPane.style.bottom_padding = 8
@@ -117,7 +118,9 @@ function buildGUI(ply)
     })
 
     individualTab.style.horizontally_stretchable = true
+    individualTab.style.left_padding = 0
     groupedTab.style.horizontally_stretchable = true
+    groupedTab.style.left_padding = 0
     
     individualTab.style.width = 218
     groupedTab.style.width = 218
